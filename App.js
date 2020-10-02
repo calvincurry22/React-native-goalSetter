@@ -9,6 +9,11 @@ export default function App() {
   const addGoalHandler = (goalString) => {
     setCourseGoals([...courseGoals, { id: Math.random().toString(), value: goalString }]);
   }
+  const deleteGoal = (goalId) => {
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter((goal) => goal.id !== goalId)
+    })
+  }
   //Left off at 2:32:00
   /* Use FlatList for better performance when displaying large lists of data
   vs ScrollView and mapping through an array */
@@ -21,7 +26,11 @@ export default function App() {
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
-        renderItem={itemData => <GoalItem itemData={itemData} />}
+        renderItem={itemData => (
+          <GoalItem
+            itemData={itemData}
+            deleteGoal={deleteGoal}
+          />)}
       />
     </View>
     // </ScrollView>

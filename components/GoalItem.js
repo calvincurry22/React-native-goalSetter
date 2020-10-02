@@ -1,11 +1,13 @@
 import React from 'react';
-import { ImagePropTypes, StyleSheet, Text, View } from 'react-native';
+import { ImagePropTypes, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-export default ({ itemData }) => {
+export default ({ itemData, deleteGoal }) => {
     return (
-        <View style={styles.listItem}>
-            <Text>{itemData.item.value}</Text>
-        </View>
+        <TouchableOpacity activeOpacity={0.7} onPress={deleteGoal.bind(this, itemData.item.id)}>
+            <View style={styles.listItem}>
+                <Text>{itemData.item.value}</Text>
+            </View>
+        </TouchableOpacity>
     )
 }
 
