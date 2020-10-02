@@ -9,7 +9,7 @@ export default function App() {
   const addGoalHandler = () => {
     setCourseGoals([...courseGoals, enteredGoal]);
   }
-
+  //Left off at 2:05:00
   return (
     <View style={styles.mainContainer}>
       <View style={styles.childContainer}>
