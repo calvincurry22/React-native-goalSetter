@@ -6,16 +6,17 @@ import GoalItem from './components/GoalItem';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([])
-
-  //Left off at 2:28:00
+  const addGoalHandler = (goalString) => {
+    setCourseGoals([...courseGoals, { id: Math.random().toString(), value: goalString }]);
+  }
+  //Left off at 2:32:00
   /* Use FlatList for better performance when displaying large lists of data
   vs ScrollView and mapping through an array */
   return (
     // <ScrollView>
     <View style={styles.mainContainer}>
       <GoalInput
-        courseGoals={courseGoals}
-        setCourseGoals={setCourseGoals}
+        addGoalHandler={addGoalHandler}
       />
       <FlatList
         keyExtractor={(item, index) => item.id}

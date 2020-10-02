@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
 
-export default ({ courseGoals, setCourseGoals }) => {
+export default ({ addGoalHandler }) => {
     const [enteredGoal, setEnteredGoal] = useState('')
     const goalInputHandler = (enteredText) => setEnteredGoal(enteredText)
-    const addGoalHandler = () => {
-        setCourseGoals([...courseGoals, { id: Math.random().toString(), value: enteredGoal }]);
-    }
+
 
     return (
         <View style={styles.childContainer}>
@@ -17,8 +15,10 @@ export default ({ courseGoals, setCourseGoals }) => {
                 onChangeText={goalInputHandler}
                 value={enteredGoal}
             />
-            <Button title="ADD" onPress={addGoalHandler} />
+            <Button title="ADD" onPress={addGoalHandler.bind(this, enteredGoal)} />
         </View>
+        /*Calling .bind above (line 18) is another way of adding an argument to 
+        addGoalHandler function without using an anonymous function */
     )
 }
 
