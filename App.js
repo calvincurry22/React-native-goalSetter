@@ -6,22 +6,29 @@ import GoalItem from './components/GoalItem';
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([])
+  const [isAddMode, setIsAddMode] = useState(false)
+  const toggleModal = () => {
+    setIsAddMode(!isAddMode)
+  }
   const addGoalHandler = (goalString) => {
     setCourseGoals([...courseGoals, { id: Math.random().toString(), value: goalString }]);
+    toggleModal();
   }
   const deleteGoal = (goalId) => {
     setCourseGoals(currentGoals => {
       return currentGoals.filter((goal) => goal.id !== goalId)
     })
   }
-  //Left off at 2:32:00
+  //Left off at 2:58:12
   /* Use FlatList for better performance when displaying large lists of data
   vs ScrollView and mapping through an array */
   return (
     // <ScrollView>
     <View style={styles.mainContainer}>
+      <Button title="Add New Goal" onPress={toggleModal} />
       <GoalInput
         addGoalHandler={addGoalHandler}
+        isAddMode={isAddMode}
       />
       <FlatList
         keyExtractor={(item, index) => item.id}

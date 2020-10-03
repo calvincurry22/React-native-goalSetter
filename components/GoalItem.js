@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImagePropTypes, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ImagePropTypes, StyleSheet, Text, TouchableHighlight, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 
 export default ({ itemData, deleteGoal }) => {
     return (
