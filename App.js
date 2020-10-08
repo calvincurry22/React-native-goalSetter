@@ -29,6 +29,7 @@ export default function App() {
       <GoalInput
         addGoalHandler={addGoalHandler}
         isAddMode={isAddMode}
+        toggleModal={toggleModal}
       />
       <FlatList
         keyExtractor={(item, index) => item.id}

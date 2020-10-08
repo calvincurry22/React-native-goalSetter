@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { Button, Modal, StyleSheet, TextInput, View } from 'react-native';
 
 
-export default ({ addGoalHandler, isAddMode }) => {
+export default ({ addGoalHandler, isAddMode, toggleModal }) => {
     const [enteredGoal, setEnteredGoal] = useState('')
     const goalInputHandler = (enteredText) => setEnteredGoal(enteredText)
 
+    const addGoal = () => {
+        addGoalHandler(enteredGoal);
+        setEnteredGoal('');
+    }
+
+    const cancelGoal = () => {
+        toggleModal();
+        setEnteredGoal('')
+    }
 
     return (
         <Modal visible={isAddMode} animationType="slide">
@@ -16,7 +25,14 @@ export default ({ addGoalHandler, isAddMode }) => {
                     onChangeText={goalInputHandler}
                     value={enteredGoal}
                 />
-                <Button title="ADD" onPress={addGoalHandler.bind(this, enteredGoal)} />
+                <View style={styles.buttonContainer}>
+                    <View style={styles.button}>
+                        <Button title="CANCEL" color="red" onPress={cancelGoal} />
+                    </View>
+                    <View style={styles.button}>
+                        <Button title="ADD" onPress={addGoal} />
+                    </View>
+                </View>
             </View>
         </Modal>
         /*Calling .bind above (line 18) is another way of adding an argument to 
@@ -38,5 +54,14 @@ const styles = StyleSheet.create({
         borderBottomColor: 'black',
         borderWidth: 1,
         padding: 10
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginVertical: 10,
+        width: '60%'
+    },
+    button: {
+        width: '40%'
     }
 })
