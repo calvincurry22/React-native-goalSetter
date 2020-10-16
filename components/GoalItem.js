@@ -5,7 +5,7 @@ export default ({ itemData, deleteGoal }) => {
     return (
         <TouchableOpacity activeOpacity={0.7} onPress={deleteGoal.bind(this, itemData.item.id)}>
             <View style={styles.listItem}>
-                <Text>{itemData.item.value}</Text>
+                <Text>Goal: {itemData.item.value}</Text>
             </View>
         </TouchableOpacity>
     )
